@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: froggy-hub
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      # Descomenta si creas una base Postgres en Render:
+      # - key: DATABASE_URL
+      #   fromDatabase:
+      #     name: froggy-hub-db
+      #     property: connectionString
